@@ -13,6 +13,7 @@ users = [
             "first_name": "admin",
             "last_name": "admin",
             "email": "admin@fab.org",
+            "org_id": 1,
         },
     },
     {
@@ -22,6 +23,7 @@ users = [
             "first_name": "admin2",
             "last_name": "admin2",
             "email": "admin2@fab.org",
+            "org_id": 2,
         },
     },
     {
@@ -31,6 +33,7 @@ users = [
             "first_name": "karen",
             "last_name": "karen",
             "email": "karen@fab.org",
+            "org_id": 3,
         },
     },
     {
@@ -40,6 +43,7 @@ users = [
             "first_name": "karen2",
             "last_name": "karen2",
             "email": "karen2@fab.org",
+            "org_id": 1,
         },
     },
     {
@@ -49,6 +53,7 @@ users = [
             "first_name": "alpha1",
             "last_name": "alpha1",
             "email": "alpha1@fab.org",
+            "org_id": 2,
         },
     },
     {
@@ -58,6 +63,7 @@ users = [
             "first_name": "gamma1",
             "last_name": "gamma1",
             "email": "gamma1@fab.org",
+            "org_id": 3,
         },
     },
     {
@@ -67,6 +73,7 @@ users = [
             "first_name": "alpha2",
             "last_name": "alpha2",
             "email": "alpha2@fab.org",
+            "org_id": 1,
         },
     },
     {
@@ -76,6 +83,7 @@ users = [
             "first_name": "gamma2",
             "last_name": "gamma2",
             "email": "gamma2@fab.org",
+            "org_id": 2,
         },
     },
     {
@@ -85,6 +93,17 @@ users = [
             "first_name": "admin3",
             "last_name": "admin3",
             "email": "admin3@fab.org",
+            "org_id": 3,
+        },
+    },
+    {
+        "token": "admin4",
+        "user_info": {
+            "username": "admin4",
+            "first_name": "admin4",
+            "last_name": "admin4",
+            "email": "admin4@fab.org",
+            "org_id": 1,
         },
     },
 ]
@@ -100,6 +119,21 @@ def get_user_info():
             user_info = search[0]["user_info"]
             print(user_info)
             return jsonify(user_info)
+
+    return jsonify(None)
+
+
+@app.route("/user/org_id", methods=["GET"])
+def get_user_org_id():
+    token = request.args.get("token")
+
+    if token is not \
+            None:
+        search = list(filter(lambda person: person["token"] == token, users))
+        if search != []:
+            org_id = search[0]["user_info"]["org_id"]
+            print(org_id)
+            return jsonify(org_id)
 
     return jsonify(None)
 
