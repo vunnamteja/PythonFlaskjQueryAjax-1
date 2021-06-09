@@ -158,4 +158,4 @@ def dashboard():
 
 
 if __name__=="__main__":
-    app.run()
+    app.run(host="ec2-65-0-183-101.ap-south-1.compute.amazonaws.com", port=5000, debug=True)
